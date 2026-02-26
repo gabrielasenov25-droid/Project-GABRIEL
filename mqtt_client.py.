@@ -1,0 +1,35 @@
+import paho.mqtt.client as mqtt
+import time
+
+# Настройки за връзка
+BROKER = "localhost"  # Тъй като GABRIEL работи локално
+PORT = 1883
+TOPIC = "gabriel/commands"
+
+def on_connect(client, userdata, flags, rc):
+    if rc == 0:
+        print("Connected to GABRIEL MQTT Broker!")
+        client.subscribe(TOPIC)
+    else:
+        print(f"Failed to connect, return code {rc}")
+
+def on_message(client, userdata, msg):
+    command = msg.payload.decode()
+    print(f"Received command: {command}")
+    
+    # Логика за управление на паметта (Протокол Асенов)
+    if command == "REMEMBER":
+        print("Status: Recording... (Red Light ON)")
+    elif command == "FORGET":
+        print("Status: Deleting... (Green Light ON)")
+
+client = mqtt.Client("Gabriel_Assistant")
+client.on_connect = on_connect
+client.on_message = on_message
+
+print("Starting Project GABRIEL MQTT Client...")
+try:
+    client.connect(BROKER, PORT, 60)
+    client.loop_forever()
+except Exception as e:
+    print(f"Error: {e}")
