@@ -1,0 +1,21 @@
+# ASENOV PROTOCOL (v1.0)
+**Core Memory Management & Privacy Standard for Project GABRIEL**
+
+## 1. Concept
+The Asenov Protocol is designed to provide users with physical and visual certainty regarding their data privacy. Unlike "always-listening" devices, GABRIEL uses this protocol to gatekeep information storage locally.
+
+## 2. Operational Modes
+
+### A. REMEMBER Mode
+- **Trigger:** Voice command "REMEMBER" / "ЗАПОМНИ".
+- **Hardware Action:** Activates local recording and PostGIS indexing.
+- **Visual Feedback:** **RED LIGHT** (Indicates active recording/storage).
+
+### B. FORGET Mode
+- **Trigger:** Voice command "FORGET" / "ЗАБРАВИ".
+- **Hardware Action:** Immediate interruption of data stream and deletion of the current buffer.
+- **Visual Feedback:** **GREEN LIGHT** (Indicates system is "clean" and not storing data).
+
+## 3. Privacy Standards
+- **Zero Cloud Transfer:** All logic remains on the Raspberry Pi/ESP32.
+- **Local Sovereignty:** The user has absolute control over the memory state through visual confirmation.
